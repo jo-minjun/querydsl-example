@@ -1,0 +1,16 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    platform: linux/x86_64
+    volumes:
+      - $HOME/mysql_data:/var/lib/mysql/
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_USER=mysql-user
+      - MYSQL_PASSWORD=mysql-user-secret
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=my-test
+    ports:
+      - 3306:3306
+    command: mysqld --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
